@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisata Chatbot AI! with LLAMA3🚀</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Wisata Chatbot AI! with LLAMA3🚀</h1>
+        <p>Tanyakan apa saja kepada Chatbot kami.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alert">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Initialize Model Form -->
+        <form method="post">
+            <button type="submit" name="initialize_model" class="btn btn-primary mb-3">Initialize Model and Load Documents</button>
+        </form>
+
+        <!-- Question Form -->
+        <form method="post">
+            <div class="form-group mb-3">
+                <label for="input_text">Mari bertanya:</label>
+                <textarea class="form-control" id="input_text" name="input_text" rows="3" placeholder="Masukkan pertanyaan Anda di sini..."></textarea>
+            </div>
+            <button type="submit" name="get_answer" class="btn btn-success">Dapatkan Jawaban</button>
+        </form>
+
+        <!-- Display Answer -->
+        {% if answer %}
+            <div class="mt-4">
+                <h3>Answer:</h3>
+                <p>{{ answer }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
